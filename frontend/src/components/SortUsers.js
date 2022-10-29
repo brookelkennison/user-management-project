@@ -18,6 +18,7 @@ export const SortUsers = ({users, updateUsers}) => {
                 return 0;
             });
             updateUsers(sortedUsers);
+            setDropdown(false);
         } else if ( sortType === 'descending') {
             const sortedUsers = usersArray.sort((a, b) => {
                 let fa = a.id,
@@ -31,6 +32,7 @@ export const SortUsers = ({users, updateUsers}) => {
                 return 0;
             });
             updateUsers(sortedUsers);
+            setDropdown(false);
         } else {
             const sortedUsers = usersArray.sort((a, b) => {
                 let fa = a.id,
@@ -44,6 +46,7 @@ export const SortUsers = ({users, updateUsers}) => {
                 return 0;
             });
             updateUsers(sortedUsers);
+            setDropdown(false);
         }
     }
 
