@@ -3,9 +3,11 @@ import axios from 'axios';
 import { SortUsers } from './SortUsers';
 import { UsersTable } from './UsersTable';
 import { CreateUsers } from './CreateUsers';
+import ReactLoading from 'react-loading';
 
 export const Users = () => {
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
     // const sorting = {
     //     alphabetical: function sortAlphabetical(users) {
             
@@ -30,12 +32,16 @@ export const Users = () => {
     }, []);
     
     useEffect(() => {
-        
+        users.length > 0 && 
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
     }, [users]);
 
     return (
         <>
-            {users.length > 0 && (
+            {loading ? 
+                <ReactLoading type={'spin'} color={'black'} height={36} width={36} /> : (
                 <>
                 <SortUsers users={users} updateUsers={updateUsers}/>
                 <UsersTable users={users}/>
