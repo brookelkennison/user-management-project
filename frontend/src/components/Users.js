@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { SortUsers } from './SortUsers';
 import { UsersTable } from './UsersTable';
+
 
 export const Users = () => {
     const [users, setUsers] = useState([]);
@@ -22,7 +24,13 @@ export const Users = () => {
 
     return (
         <>
-            {users.length > 0 && <UsersTable users={users}/>} 
+            {users.length > 0 && (
+                <>
+                <SortUsers />
+                <UsersTable users={users}/>
+                </>
+            )} 
+
         </>
     )
 }
