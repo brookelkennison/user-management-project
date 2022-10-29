@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { SortUsers } from './SortUsers';
 import { UsersTable } from './UsersTable';
-
+import { CreateUsers } from './CreateUsers';
 
 export const Users = () => {
     const [users, setUsers] = useState([]);
@@ -39,6 +39,7 @@ export const Users = () => {
                 <>
                 <SortUsers users={users} updateUsers={updateUsers}/>
                 <UsersTable users={users}/>
+                <CreateUsers />
                 </>
             )} 
 
