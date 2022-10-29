@@ -6,6 +6,12 @@ import { UsersTable } from './UsersTable';
 
 export const Users = () => {
     const [users, setUsers] = useState([]);
+    // const sorting = {
+    //     alphabetical: function sortAlphabetical(users) {
+            
+    //     }
+    // }
+    // on click of sort method use the users array and set the user array with the new data
     
     const getUserList = () => {
         axios.get(`https://jsonplaceholder.typicode.com/users`)
@@ -14,19 +20,24 @@ export const Users = () => {
         });
     }
 
+    
+    const updateUsers = (newList) => {
+        setUsers(newList);
+    }
+    
     useEffect(() => {
         getUserList();
     }, []);
     
     useEffect(() => {
-        console.log(users);
+        
     }, [users]);
 
     return (
         <>
             {users.length > 0 && (
                 <>
-                <SortUsers />
+                <SortUsers users={users} updateUsers={updateUsers}/>
                 <UsersTable users={users}/>
                 </>
             )} 
