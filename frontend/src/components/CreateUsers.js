@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 /**
  * @date 2022-11-12
@@ -17,22 +17,49 @@ import React, { useEffect, useState } from 'react';
 export const CreateUsers = ({ users, updateUsers }) => {
 	const usersArray = [...users];
 	const [modal, setModal] = useState(false);
-	const newUser = { id: users.length + 1 };
+	const [formValidated, setFormValidated] = useState(false);
+	const newUser = {
+		id: users.length + 1,
+		name: undefined,
+		email: undefined,
+		address: {
+			street: undefined,
+			city: undefined,
+			zipcode: undefined,
+		},
+		company: {
+			name: undefined,
+		},
+	};
 
 	const handleChange = (event, key, nestedKey) => {
 		if (nestedKey !== undefined) {
-			if (!newUser[key]) {
-				newUser[key] = {};
-			}
 			newUser[key][nestedKey] = event.target.value;
 		} else {
 			newUser[key] = event.target.value;
+		}
+		validateForm();
+	};
+
+	const validateForm = () => {
+		let allValues = [];
+		Object.keys(newUser).forEach((key) => {
+			if (key === 'address' || key === 'company') {
+				allValues = allValues.concat(Object.values(newUser[key]));
+			} else {
+				allValues = allValues.concat(newUser[key]);
+			}
+		});
+		const checkValues = allValues.every((element) => element !== undefined);
+		if (checkValues === true) {
+			setFormValidated(true);
 		}
 	};
 
 	const handleSubmit = () => {
 		usersArray[usersArray.length] = newUser;
 		updateUsers(usersArray);
+		setFormValidated(false);
 		setModal(false);
 	};
 
@@ -51,6 +78,7 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								id='name'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='James'
+								required
 								onChange={(e) => {
 									handleChange(e, 'name');
 								}}
@@ -75,6 +103,7 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								id='street'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='123 Example St.'
+								required
 								onChange={(e) => {
 									handleChange(e, 'address', 'street');
 								}}
@@ -87,6 +116,7 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								id='city'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='Dallas'
+								required
 								onChange={(e) => {
 									handleChange(e, 'address', 'city');
 								}}
@@ -99,6 +129,7 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								id='zipcode'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='45670'
+								required
 								onChange={(e) => {
 									handleChange(e, 'address', 'zipcode');
 								}}
@@ -111,6 +142,7 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								id='company'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='My Company'
+								required
 								onChange={(e) => {
 									handleChange(e, 'company', 'name');
 								}}
@@ -118,7 +150,8 @@ export const CreateUsers = ({ users, updateUsers }) => {
 
 							<div className='flex items-center justify-start w-full'>
 								<button
-									className='focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm'
+									className={'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out  rounded text-white px-8 py-2 text-sm ' + (formValidated ? 'hover:bg-indigo-600 bg-indigo-700' : 'bg-indigo-700/40')}
+									disabled={!formValidated}
 									onClick={() => {
 										handleSubmit();
 									}}>

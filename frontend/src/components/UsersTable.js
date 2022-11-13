@@ -2,10 +2,8 @@ import React from 'react';
 
 export const UsersTable = (data) => {
 	const users = data.users;
-	console.log(users);
 
 	const getAddressLink = (address) => {
-		console.log(address.street, address.city, address.zipcode);
 		const link = 'https://www.google.com/maps/place/' + address.street + ' ' + address.city + ' ' + address.zipcode;
 		return link;
 	};
