@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 /**
+ * Creates new user
  * @date 2022-11-12
  * @component
  * @param {Array.<Users>} users
