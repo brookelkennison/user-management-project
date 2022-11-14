@@ -1,8 +1,16 @@
 import React from 'react';
 
+/**
+ * Displays user data in the form of a table
+ * @param {object} data contains user data
+ */
 export const UsersTable = (data) => {
 	const users = data.users;
 
+	/**
+	 * Creates google maps link by passing in address values as params
+	 * @param {object} address
+	 */
 	const getAddressLink = (address) => {
 		const link = 'https://www.google.com/maps/place/' + address.street + ' ' + address.city + ' ' + address.zipcode;
 		return link;

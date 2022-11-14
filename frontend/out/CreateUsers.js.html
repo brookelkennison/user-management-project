@@ -1,8 +1,36 @@
-import React, { useState } from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: CreateUsers.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: CreateUsers.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
 
 /**
  * @date 2022-11-12
- * @param {Array.<Users>} users
+ * @param {Array.&lt;Users>} users
  * @param {number} users.id
  * @param {string} users.name
  * @param {string} users.address.street
@@ -76,17 +104,17 @@ export const CreateUsers = ({ users, updateUsers }) => {
 	};
 
 	return (
-		<>
-			{modal && (
-				<div className='py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0' id='modal'>
-					<div role='alert' className='container mx-auto w-11/12 md:w-2/3 max-w-lg'>
-						<div className='relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400'>
-							<h1 className='text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4'>Create New User</h1>
+		&lt;>
+			{modal &amp;&amp; (
+				&lt;div className='py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0' id='modal'>
+					&lt;div role='alert' className='container mx-auto w-11/12 md:w-2/3 max-w-lg'>
+						&lt;div className='relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400'>
+							&lt;h1 className='text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4'>Create New User&lt;/h1>
 							{/* NAME */}
-							<label htmlFor='name' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+							&lt;label htmlFor='name' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
 								Full Name
-							</label>
-							<input
+							&lt;/label>
+							&lt;input
 								id='name'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='James'
@@ -96,10 +124,10 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								}}
 							/>
 							{/* EMAIL */}
-							<label htmlFor='email' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+							&lt;label htmlFor='email' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
 								Email
-							</label>
-							<input
+							&lt;/label>
+							&lt;input
 								id='email'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='name@example.com'
@@ -108,10 +136,10 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								}}
 							/>
 							{/* STREET ADDRESS */}
-							<label htmlFor='street' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+							&lt;label htmlFor='street' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
 								Street Address
-							</label>
-							<input
+							&lt;/label>
+							&lt;input
 								id='street'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='123 Example St.'
@@ -121,10 +149,10 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								}}
 							/>
 							{/* CITY */}
-							<label htmlFor='city' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+							&lt;label htmlFor='city' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
 								City
-							</label>
-							<input
+							&lt;/label>
+							&lt;input
 								id='city'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='Dallas'
@@ -134,10 +162,10 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								}}
 							/>
 							{/* ZIPCODE */}
-							<label htmlFor='zipcode' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+							&lt;label htmlFor='zipcode' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
 								Zipcode
-							</label>
-							<input
+							&lt;/label>
+							&lt;input
 								id='zipcode'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='45670'
@@ -147,10 +175,10 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								}}
 							/>
 							{/* COMPANY */}
-							<label htmlFor='company' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+							&lt;label htmlFor='company' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
 								Company
-							</label>
-							<input
+							&lt;/label>
+							&lt;input
 								id='company'
 								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
 								placeholder='My Company'
@@ -160,50 +188,73 @@ export const CreateUsers = ({ users, updateUsers }) => {
 								}}
 							/>
 
-							<div className='flex items-center justify-start w-full'>
-								<button
+							&lt;div className='flex items-center justify-start w-full'>
+								&lt;button
 									className={'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out  rounded text-white px-8 py-2 text-sm ' + (formValidated ? 'hover:bg-indigo-600 bg-indigo-700' : 'bg-indigo-700/40')}
 									disabled={!formValidated}
 									onClick={() => {
 										handleSubmit();
 									}}>
 									Submit
-								</button>
-								<button
+								&lt;/button>
+								&lt;button
 									className='focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm'
 									onClick={() => {
 										setModal(false);
 										setFormValidated(false);
 									}}>
 									Cancel
-								</button>
-							</div>
-							<button
+								&lt;/button>
+							&lt;/div>
+							&lt;button
 								className='cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600'
 								onClick={() => {
 									setModal(false);
 									setFormValidated(false);
 								}}
 								aria-label='close modal'>
-								<svg xmlns='http://www.w3.org/2000/svg' className='icon icon-tabler icon-tabler-x' width='20' height='20' viewBox='0 0 24 24' strokeWidth='2.5' stroke='currentColor' fill='none' strokeLinecap='round' strokeLinejoin='round'>
-									<path stroke='none' d='M0 0h24v24H0z' />
-									<line x1='18' y1='6' x2='6' y2='18' />
-									<line x1='6' y1='6' x2='18' y2='18' />
-								</svg>
-							</button>
-						</div>
-					</div>
-				</div>
+								&lt;svg xmlns='http://www.w3.org/2000/svg' className='icon icon-tabler icon-tabler-x' width='20' height='20' viewBox='0 0 24 24' strokeWidth='2.5' stroke='currentColor' fill='none' strokeLinecap='round' strokeLinejoin='round'>
+									&lt;path stroke='none' d='M0 0h24v24H0z' />
+									&lt;line x1='18' y1='6' x2='6' y2='18' />
+									&lt;line x1='6' y1='6' x2='18' y2='18' />
+								&lt;/svg>
+							&lt;/button>
+						&lt;/div>
+					&lt;/div>
+				&lt;/div>
 			)}
-			<div className='w-full flex justify-center py-12' id='button'>
-				<button
+			&lt;div className='w-full flex justify-center py-12' id='button'>
+				&lt;button
 					className='focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm'
 					onClick={() => {
 						setModal(true);
 					}}>
 					Create User
-				</button>
-			</div>
-		</>
+				&lt;/button>
+			&lt;/div>
+		&lt;/>
 	);
 };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CreateUsers">CreateUsers</a></li><li><a href="global.html#SortUsers">SortUsers</a></li><li><a href="global.html#Users">Users</a></li><li><a href="global.html#UsersTable">UsersTable</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sun Nov 13 2022 21:06:13 GMT-0500 (Eastern Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

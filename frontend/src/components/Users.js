@@ -5,6 +5,7 @@ import { UsersTable } from './UsersTable';
 import { CreateUsers } from './CreateUsers';
 
 /**
+ * Componenet that gets all users from api and passes the data to the user table, sort users functions, and create user function
  * @date 2022-11-12
  * @param {Array.<Users>} users
  * @param {number} users.id
@@ -16,6 +17,7 @@ import { CreateUsers } from './CreateUsers';
  * @param {string} users.company.name
  * @returns {any}
  */
+
 export const Users = () => {
 	const [users, setUsers] = useState([]);
 
@@ -29,6 +31,10 @@ export const Users = () => {
 		}
 	};
 
+	/**
+	 * Update previous users array with new users array
+	 * @param {array} newList copy of users array that is manipulated and used to overwrite the existing users array
+	 */
 	const updateUsers = (newList) => {
 		setUsers(newList);
 	};
