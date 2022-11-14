@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 /**
  * Contains functions to sort users by different sort types
+ * @component
  * @param {object} users
  * @param {function} updateUsers function from parent
  * @returns users

@@ -2,6 +2,7 @@ import React from 'react';
 
 /**
  * Displays user data in the form of a table
+ * @component
  * @param {object} data contains user data
  */
 export const UsersTable = (data) => {
@@ -9,6 +10,7 @@ export const UsersTable = (data) => {
 
 	/**
 	 * Creates google maps link by passing in address values as params
+	 * @function
 	 * @param {object} address
 	 */
 	const getAddressLink = (address) => {
