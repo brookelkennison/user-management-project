@@ -4,6 +4,10 @@ User Management Project
 ## Demo link:
 Access my project at [Heroku](https://rocky-lowlands-16280.herokuapp.com/)
 
+## Project documentation:
+View documentation at [Github Pages](
+https://brookelkennison.github.io/user-management-project/)
+
 ## Table of Content:
 
 - [About The App](#about-the-app)
