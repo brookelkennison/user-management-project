@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: CreateUsers.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: CreateUsers.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
+
+/**
+ * Creates new user
+ * @date 2022-11-12
+ * @component
+ * @param {Array.&lt;Users>} users
+ * @param {number} users.id
+ * @param {string} users.name
+ * @param {string} users.address.street
+ * @param {string} users.address.city
+ * @param {string} users.address.zipcode
+ * @param {string} users.email
+ * @param {string} users.company.name
+ * @param {function} updateUsers
+ * @returns {any}
+ */
+
+export const CreateUsers = ({ users, updateUsers }) => {
+	const usersArray = [...users];
+	const [modal, setModal] = useState(false);
+	const [formValidated, setFormValidated] = useState(false);
+	const newUser = {
+		id: users.length + 1,
+		name: undefined,
+		email: undefined,
+		address: {
+			street: undefined,
+			city: undefined,
+			zipcode: undefined,
+		},
+		company: {
+			name: undefined,
+		},
+	};
+
+	/**
+	 * Adds input values to newUser object
+	 * @function
+	 * @param {event} event
+	 * @param {string} key
+	 * @param {string} nestedKey
+	 */
+	const handleChange = (event, key, nestedKey) => {
+		if (nestedKey !== undefined) {
+			newUser[key][nestedKey] = event.target.value;
+		} else {
+			newUser[key] = event.target.value;
+		}
+		validateForm();
+	};
+
+	/**
+	 * Checks that all values are all set and not undefined
+	 * @function
+	 */
+	const validateForm = () => {
+		let allValues = [];
+		Object.keys(newUser).forEach((key) => {
+			if (key === 'address' || key === 'company') {
+				allValues = allValues.concat(Object.values(newUser[key]));
+			} else {
+				allValues = allValues.concat(newUser[key]);
+			}
+		});
+		const checkValues = allValues.every((element) => element !== undefined);
+		if (checkValues === true) {
+			setFormValidated(true);
+		}
+	};
+
+	/**
+	 * Adds new user onto previous users, resets form validation, and closes modal
+	 * @function
+	 */
+	const handleSubmit = () => {
+		usersArray[usersArray.length] = newUser;
+		updateUsers(usersArray);
+		setFormValidated(false);
+		setModal(false);
+	};
+
+	return (
+		&lt;>
+			{modal &amp;&amp; (
+				&lt;div className='py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0' id='modal'>
+					&lt;div role='alert' className='container mx-auto w-11/12 md:w-2/3 max-w-lg'>
+						&lt;div className='relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400'>
+							&lt;h1 className='text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4'>Create New User&lt;/h1>
+							{/* NAME */}
+							&lt;label htmlFor='name' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+								Full Name
+							&lt;/label>
+							&lt;input
+								id='name'
+								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
+								placeholder='James'
+								required
+								onChange={(e) => {
+									handleChange(e, 'name');
+								}}
+							/>
+							{/* EMAIL */}
+							&lt;label htmlFor='email' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+								Email
+							&lt;/label>
+							&lt;input
+								id='email'
+								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
+								placeholder='name@example.com'
+								onChange={(e) => {
+									handleChange(e, 'email');
+								}}
+							/>
+							{/* STREET ADDRESS */}
+							&lt;label htmlFor='street' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+								Street Address
+							&lt;/label>
+							&lt;input
+								id='street'
+								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
+								placeholder='123 Example St.'
+								required
+								onChange={(e) => {
+									handleChange(e, 'address', 'street');
+								}}
+							/>
+							{/* CITY */}
+							&lt;label htmlFor='city' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+								City
+							&lt;/label>
+							&lt;input
+								id='city'
+								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
+								placeholder='Dallas'
+								required
+								onChange={(e) => {
+									handleChange(e, 'address', 'city');
+								}}
+							/>
+							{/* ZIPCODE */}
+							&lt;label htmlFor='zipcode' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+								Zipcode
+							&lt;/label>
+							&lt;input
+								id='zipcode'
+								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
+								placeholder='45670'
+								required
+								onChange={(e) => {
+									handleChange(e, 'address', 'zipcode');
+								}}
+							/>
+							{/* COMPANY */}
+							&lt;label htmlFor='company' className='text-gray-800 text-sm font-bold leading-tight tracking-normal'>
+								Company
+							&lt;/label>
+							&lt;input
+								id='company'
+								className='mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border'
+								placeholder='My Company'
+								required
+								onChange={(e) => {
+									handleChange(e, 'company', 'name');
+								}}
+							/>
+
+							&lt;div className='flex items-center justify-start w-full'>
+								&lt;button
+									className={'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out  rounded text-white px-8 py-2 text-sm ' + (formValidated ? 'hover:bg-indigo-600 bg-indigo-700' : 'bg-indigo-700/40')}
+									disabled={!formValidated}
+									onClick={() => {
+										handleSubmit();
+									}}>
+									Submit
+								&lt;/button>
+								&lt;button
+									className='focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm'
+									onClick={() => {
+										setModal(false);
+										setFormValidated(false);
+									}}>
+									Cancel
+								&lt;/button>
+							&lt;/div>
+							&lt;button
+								className='cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600'
+								onClick={() => {
+									setModal(false);
+									setFormValidated(false);
+								}}
+								aria-label='close modal'>
+								&lt;svg xmlns='http://www.w3.org/2000/svg' className='icon icon-tabler icon-tabler-x' width='20' height='20' viewBox='0 0 24 24' strokeWidth='2.5' stroke='currentColor' fill='none' strokeLinecap='round' strokeLinejoin='round'>
+									&lt;path stroke='none' d='M0 0h24v24H0z' />
+									&lt;line x1='18' y1='6' x2='6' y2='18' />
+									&lt;line x1='6' y1='6' x2='18' y2='18' />
+								&lt;/svg>
+							&lt;/button>
+						&lt;/div>
+					&lt;/div>
+				&lt;/div>
+			)}
+			&lt;div className='w-full flex justify-center py-12' id='button'>
+				&lt;button
+					className='focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm'
+					onClick={() => {
+						setModal(true);
+					}}>
+					Create User
+				&lt;/button>
+			&lt;/div>
+		&lt;/>
+	);
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CreateUsers">CreateUsers</a></li><li><a href="global.html#SortUsers">SortUsers</a></li><li><a href="global.html#Users">Users</a></li><li><a href="global.html#UsersTable">UsersTable</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Nov 14 2022 20:05:09 GMT-0500 (Eastern Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
