@@ -17,7 +17,7 @@ Access my project at [Heroku](https://rocky-lowlands-16280.herokuapp.com/)
 
 ## Screenshots
 
-![alt text](https://github.com/brookelkennison/user-management-project/blob/main/image.jpg?raw=true)
+![alt text](https://github.com/brookelkennison/user-management-project/blob/main/public/image.jpg)
 
 ## Technologies
 I used `Create React App`, `JsDoc`, `TailwindCSS`, and `Heroku`.
