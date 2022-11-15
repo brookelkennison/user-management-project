@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 /**
  * Creates new user
@@ -20,19 +20,30 @@ export const CreateUsers = ({ users, updateUsers }) => {
 	const usersArray = [...users];
 	const [modal, setModal] = useState(false);
 	const [formValidated, setFormValidated] = useState(false);
-	const newUser = {
-		id: users.length + 1,
-		name: undefined,
-		email: undefined,
-		address: {
-			street: undefined,
-			city: undefined,
-			zipcode: undefined,
-		},
-		company: {
-			name: undefined,
-		},
-	};
+	const [newUser, setNewUser] = useState({});
+
+	useEffect(() => {
+		if (users.length > 0) {
+			setNewUser((prevState) => ({
+				...prevState,
+				id: users.length + 1,
+				name: undefined,
+				email: undefined,
+				address: {
+					street: undefined,
+					city: undefined,
+					zipcode: undefined,
+				},
+				company: {
+					name: undefined,
+				},
+			}));
+		}
+	}, [users]);
+
+	useEffect(() => {
+		validateForm();
+	}, [newUser]);
 
 	/**
 	 * Adds input values to newUser object
@@ -43,11 +54,19 @@ export const CreateUsers = ({ users, updateUsers }) => {
 	 */
 	const handleChange = (event, key, nestedKey) => {
 		if (nestedKey !== undefined) {
-			newUser[key][nestedKey] = event.target.value;
+			setNewUser((prevState) => ({
+				...prevState,
+				[key]: {
+					...prevState[key],
+					[nestedKey]: event.target.value,
+				},
+			}));
 		} else {
-			newUser[key] = event.target.value;
+			setNewUser((prevState) => ({
+				...prevState,
+				[key]: event.target.value,
+			}));
 		}
-		validateForm();
 	};
 
 	/**
@@ -63,9 +82,11 @@ export const CreateUsers = ({ users, updateUsers }) => {
 				allValues = allValues.concat(newUser[key]);
 			}
 		});
-		const checkValues = allValues.every((element) => element !== undefined);
+		const checkValues = allValues.every((element) => element !== undefined && element !== '');
 		if (checkValues === true) {
 			setFormValidated(true);
+		} else {
+			setFormValidated(false);
 		}
 	};
 
